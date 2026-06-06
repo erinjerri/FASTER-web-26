@@ -1,0 +1,225 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$metadata": {
+    "source": "Figma — FASTER Website 2025-v1 (XhOh8L9DeyrKS8BtAk7HiB)",
+    "extracted": "2026-06-06"
+  },
+
+  "color": {
+    "teal": {
+      "primary":   { "$value": "#1ABC9C", "$type": "color", "$description": "Nav active state, primary brand teal" },
+      "mid":       { "$value": "#66CCCC", "$type": "color", "$description": "Secondary teal, hover states" },
+      "light":     { "$value": "#73DACE", "$type": "color", "$description": "Subscribe section background" },
+      "pale":      { "$value": "#AFF4C6", "$type": "color", "$description": "Hero background, component cards" },
+      "deep":      { "$value": "#005E5E", "$type": "color", "$description": "Dark teal contrast elements" },
+      "midnight":  { "$value": "#013F3F", "$type": "color", "$description": "Darkest teal, deep background alt" }
+    },
+    "neutral": {
+      "black":        { "$value": "#000000", "$type": "color" },
+      "near-black":   { "$value": "#2F2F2F", "$type": "color", "$description": "Primary body text" },
+      "dark-ui":      { "$value": "#151719", "$type": "color", "$description": "Navbar background" },
+      "dark-text":    { "$value": "#1E1E1E", "$type": "color", "$description": "Dark body text, button backgrounds" },
+      "slate":        { "$value": "#434A54", "$type": "color" },
+      "navy":         { "$value": "#1E2A38", "$type": "color" },
+      "charcoal":     { "$value": "#34495E", "$type": "color" },
+      "gray-text":    { "$value": "#757575", "$type": "color", "$description": "Footer links, secondary/muted text" },
+      "gray-border":  { "$value": "#E6E6E6", "$type": "color", "$description": "Footer bg, dividers" },
+      "gray-light":   { "$value": "#F8F8F8", "$type": "color", "$description": "Card/placeholder backgrounds" },
+      "gray-mid":     { "$value": "#D7D7D7", "$type": "color", "$description": "Image placeholders, dividers" },
+      "silver":       { "$value": "#BDC3C7", "$type": "color" },
+      "off-white":    { "$value": "#FDFDFD", "$type": "color", "$description": "Page background" },
+      "white":        { "$value": "#FFFFFF", "$type": "color" }
+    },
+    "accent": {
+      "orange":  { "$value": "#FFA66B", "$type": "color", "$description": "Warm accent, CTA highlight" },
+      "yellow":  { "$value": "#FFD76B", "$type": "color", "$description": "Highlight, badge" },
+      "purple":  { "$value": "#693E71", "$type": "color", "$description": "Special callouts" },
+      "blue":    { "$value": "#AEDFF7", "$type": "color", "$description": "Info tints" },
+      "sky":     { "$value": "#E6F1F5", "$type": "color", "$description": "Light section backgrounds" }
+    },
+    "semantic": {
+      "nav-bg":           { "$value": "{color.neutral.dark-ui}",   "$type": "color" },
+      "nav-text":         { "$value": "#D9FFF7",                   "$type": "color", "$description": "Inactive nav links on dark bg" },
+      "nav-active-bg":    { "$value": "{color.teal.primary}",      "$type": "color" },
+      "nav-active-text":  { "$value": "{color.neutral.dark-ui}",   "$type": "color" },
+      "hero-bg":          { "$value": "{color.teal.pale}",         "$type": "color" },
+      "card-bg":          { "$value": "{color.teal.pale}",         "$type": "color" },
+      "subscribe-bg":     { "$value": "{color.teal.light}",        "$type": "color" },
+      "footer-bg":        { "$value": "{color.neutral.gray-border}", "$type": "color" },
+      "button-primary-bg":    { "$value": "{color.neutral.dark-text}", "$type": "color" },
+      "button-primary-text":  { "$value": "{color.neutral.white}",     "$type": "color" },
+      "button-badge-bg":      { "$value": "{color.neutral.dark-text}", "$type": "color" },
+      "button-badge-text":    { "$value": "{color.neutral.white}",     "$type": "color" },
+      "text-heading":     { "$value": "{color.neutral.black}",       "$type": "color" },
+      "text-body":        { "$value": "{color.neutral.near-black}",  "$type": "color" },
+      "text-muted":       { "$value": "{color.neutral.gray-text}",   "$type": "color" },
+      "text-on-dark":     { "$value": "{color.neutral.white}",       "$type": "color" }
+    }
+  },
+
+  "font": {
+    "family": {
+      "heading":   { "$value": "Poppins, sans-serif",    "$type": "fontFamily", "$description": "Primary headings, section titles" },
+      "article":   { "$value": "Montserrat, sans-serif", "$type": "fontFamily", "$description": "Blog/article headlines and body" },
+      "ui":        { "$value": "Inter, sans-serif",      "$type": "fontFamily", "$description": "UI — nav, footer, labels" },
+      "body":      { "$value": "'Open Sans', sans-serif","$type": "fontFamily", "$description": "Body copy, FAQ, long-form" },
+      "special":   { "$value": "Satoshi, sans-serif",   "$type": "fontFamily", "$description": "Sidebar/resource labels (Fontshare)" }
+    },
+    "size": {
+      "hero":              { "$value": "40px",  "$type": "fontSize" },
+      "article-headline":  { "$value": "60px",  "$type": "fontSize" },
+      "article-lede":      { "$value": "26px",  "$type": "fontSize" },
+      "section-heading":   { "$value": "20px",  "$type": "fontSize" },
+      "footer-heading":    { "$value": "24px",  "$type": "fontSize" },
+      "footer-link":       { "$value": "16px",  "$type": "fontSize" },
+      "body":              { "$value": "24px",  "$type": "fontSize" },
+      "nav":               { "$value": "14px",  "$type": "fontSize" },
+      "label":             { "$value": "14px",  "$type": "fontSize" },
+      "resource":          { "$value": "20px",  "$type": "fontSize" }
+    },
+    "weight": {
+      "black":       { "$value": "900", "$type": "fontWeight" },
+      "bold":        { "$value": "700", "$type": "fontWeight" },
+      "semibold":    { "$value": "600", "$type": "fontWeight" },
+      "medium":      { "$value": "500", "$type": "fontWeight" },
+      "regular":     { "$value": "400", "$type": "fontWeight" },
+      "light":       { "$value": "300", "$type": "fontWeight" }
+    }
+  },
+
+  "typography": {
+    "text-hero": {
+      "fontFamily":  { "$value": "{font.family.heading}" },
+      "fontSize":    { "$value": "{font.size.hero}" },
+      "fontWeight":  { "$value": "{font.weight.black}" },
+      "color":       { "$value": "{color.semantic.text-heading}" }
+    },
+    "text-article-headline": {
+      "fontFamily":  { "$value": "{font.family.article}" },
+      "fontSize":    { "$value": "{font.size.article-headline}" },
+      "fontWeight":  { "$value": "{font.weight.bold}" },
+      "color":       { "$value": "{color.semantic.text-heading}" }
+    },
+    "text-article-lede": {
+      "fontFamily":  { "$value": "{font.family.article}" },
+      "fontSize":    { "$value": "{font.size.article-lede}" },
+      "fontWeight":  { "$value": "{font.weight.light}" },
+      "color":       { "$value": "{color.semantic.text-heading}" }
+    },
+    "text-section-heading": {
+      "fontFamily":  { "$value": "{font.family.heading}" },
+      "fontSize":    { "$value": "{font.size.section-heading}" },
+      "fontWeight":  { "$value": "{font.weight.black}" },
+      "color":       { "$value": "{color.semantic.text-heading}" }
+    },
+    "text-nav": {
+      "fontFamily":  { "$value": "{font.family.ui}" },
+      "fontSize":    { "$value": "{font.size.nav}" },
+      "fontWeight":  { "$value": "{font.weight.medium}" }
+    },
+    "text-footer-heading": {
+      "fontFamily":  { "$value": "{font.family.ui}" },
+      "fontSize":    { "$value": "{font.size.footer-heading}" },
+      "fontWeight":  { "$value": "{font.weight.bold}" },
+      "color":       { "$value": "{color.semantic.text-heading}" }
+    },
+    "text-footer-link": {
+      "fontFamily":  { "$value": "{font.family.ui}" },
+      "fontSize":    { "$value": "{font.size.footer-link}" },
+      "fontWeight":  { "$value": "{font.weight.medium}" },
+      "color":       { "$value": "{color.semantic.text-muted}" }
+    },
+    "text-body": {
+      "fontFamily":  { "$value": "{font.family.body}" },
+      "fontSize":    { "$value": "{font.size.body}" },
+      "fontWeight":  { "$value": "{font.weight.regular}" },
+      "color":       { "$value": "{color.semantic.text-body}" }
+    },
+    "text-resource": {
+      "fontFamily":  { "$value": "{font.family.special}" },
+      "fontSize":    { "$value": "{font.size.resource}" },
+      "fontWeight":  { "$value": "{font.weight.regular}" },
+      "color":       { "$value": "{color.semantic.text-on-dark}" }
+    }
+  },
+
+  "nav": {
+    "items": [
+      { "label": "ABOUT",   "href": "/about" },
+      { "label": "DISCOVER","href": "/discover" },
+      { "label": "READ",    "href": "/blog" },
+      { "label": "WATCH",   "href": "/watch" },
+      { "label": "DONATE",  "href": "/donate" },
+      { "label": "JOIN",    "href": "/join", "variant": "button" }
+    ]
+  },
+
+  "footer": {
+    "columns": [
+      {
+        "heading": "ARCHIVE",
+        "links": [
+          { "label": "Substack",      "href": "#" },
+          { "label": "YouTube",       "href": "#" },
+          { "label": "Blog",          "href": "/blog" },
+          { "label": "FASTER Collection (Museum, Wikimedia Foundation)", "href": "#" }
+        ]
+      },
+      {
+        "heading": "JOIN",
+        "links": [
+          { "label": "FASTER FACETS",    "href": "/join#facets" },
+          { "label": "FASTER FRESH",     "href": "/join#fresh" },
+          { "label": "FASTER Education", "href": "/join#education" },
+          { "label": "FASTER PROS",      "href": "/join#pros" }
+        ]
+      },
+      {
+        "heading": "ORGANIZATION",
+        "links": [
+          { "label": "Donate", "href": "/donate" },
+          { "label": "About",  "href": "/about" },
+          { "label": "Store",  "href": "/store" }
+        ]
+      },
+      {
+        "heading": "LEGAL",
+        "links": [
+          { "label": "Accessibility Statement",  "href": "/legal/accessibility" },
+          { "label": "Cookie Consent Policy",    "href": "/legal/cookies" },
+          { "label": "Copyright Notice",         "href": "/legal/copyright" },
+          { "label": "Data Storage Disclosure",  "href": "/legal/data-storage" },
+          { "label": "Privacy Policy",           "href": "/legal/privacy" },
+          { "label": "Terms & Conditions",       "href": "/legal/terms" }
+        ]
+      }
+    ],
+    "copyright": "© FASTER - Filipinx Americans in STEAM. All rights reserved. Made with PayloadCMS."
+  },
+
+  "components": {
+    "faster-cards": [
+      {
+        "id": "education",
+        "badge": "LEARN",
+        "title": "FASTER Education",
+        "href": "/join#education",
+        "buttonLabel": "INSPIRE"
+      },
+      {
+        "id": "pros",
+        "badge": "JOIN COALITION",
+        "title": "FASTER PROS",
+        "href": "/join#pros",
+        "buttonLabel": "CONNECT"
+      },
+      {
+        "id": "archive",
+        "badge": "COMING SOON",
+        "title": "FASTER Archive Directory and Collection",
+        "href": "/discover",
+        "buttonLabel": "CONTRIBUTE"
+      }
+    ]
+  }
+}
