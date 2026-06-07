@@ -1,0 +1,130 @@
+import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
+import { redirectsPlugin } from '@payloadcms/plugin-redirects'
+import { seoPlugin } from '@payloadcms/plugin-seo'
+import { searchPlugin } from '@payloadcms/plugin-search'
+import { s3Storage } from '@payloadcms/storage-s3'
+import type { Plugin } from 'payload'
+import { revalidateRedirects } from '@/hooks/revalidateRedirects'
+import type { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
+import { searchFields } from '@/search/fieldOverrides'
+import { beforeSyncWithSearch } from '@/search/beforeSync'
+
+import type { Page, Post } from '@/payload-types'
+import { getServerSideURL } from '@/utilities/getURL'
+
+const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
+  return doc?.title ? `${doc.title} | FASTER` : 'FASTER'
+}
+
+const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
+  const url = getServerSideURL()
+
+  if (!doc?.slug) return url
+
+  if ('relatedPosts' in doc) {
+    return `${url}/blog/${doc.slug}`
+  }
+
+  return `${url}/${doc.slug}`
+}
+
+const r2Bucket = process.env.R2_BUCKET?.trim()
+const r2AccountID = process.env.R2_ACCOUNT_ID?.trim()
+const r2AccessKeyID = process.env.R2_ACCESS_KEY_ID?.trim()
+const r2SecretAccessKey = process.env.R2_SECRET_ACCESS_KEY?.trim()
+const r2Endpoint =
+  process.env.R2_ENDPOINT?.trim() ||
+  (r2AccountID ? `https://${r2AccountID}.r2.cloudflarestorage.com` : undefined)
+const r2PublicHostname = process.env.R2_PUBLIC_HOSTNAME?.trim()
+const r2ForcePathStyle = process.env.R2_FORCE_PATH_STYLE !== 'false'
+const useR2Storage = process.env.USE_R2_STORAGE === 'true'
+const forcePayloadProxyReads = process.env.NEXT_PUBLIC_USE_PAYLOAD_MEDIA_PROXY === 'true'
+const useR2DirectURLs =
+  !forcePayloadProxyReads && (process.env.R2_PUBLIC_READS === 'true' || Boolean(r2PublicHostname))
+const hasR2S3Config = Boolean(
+  useR2Storage && r2Bucket && r2Endpoint && r2AccessKeyID && r2SecretAccessKey,
+)
+const useLightweightLocalPlugins =
+  process.env.NODE_ENV === 'development' &&
+  process.env.PAYLOAD_ENABLE_FULL_LOCAL_PLUGINS !== 'true'
+
+export const plugins: Plugin[] = [
+  ...(!useLightweightLocalPlugins && hasR2S3Config
+    ? [
+        s3Storage({
+          collections: {
+            media: useR2DirectURLs
+              ? {
+                  disablePayloadAccessControl: true,
+                  ...(r2PublicHostname && {
+                    generateFileURL: ({ filename, prefix }) => {
+                      const base = `https://${r2PublicHostname.replace(/^https?:\/\//, '')}`
+                      const encodedFilename = encodeURIComponent(
+                        typeof filename === 'string' ? filename.replace(/^\/+/, '') : String(filename),
+                      )
+                      const path = prefix ? `${prefix}/${encodedFilename}` : encodedFilename
+                      return `${base}/${path}`
+                    },
+                  }),
+                }
+              : true,
+          },
+          bucket: r2Bucket as string,
+          config: {
+            credentials: {
+              accessKeyId: r2AccessKeyID as string,
+              secretAccessKey: r2SecretAccessKey as string,
+            },
+            endpoint: r2Endpoint as string,
+            forcePathStyle: r2ForcePathStyle,
+            region: 'auto',
+            requestChecksumCalculation: 'WHEN_REQUIRED',
+            responseChecksumValidation: 'WHEN_REQUIRED',
+          },
+        }),
+      ]
+    : []),
+  redirectsPlugin({
+    collections: ['pages', 'posts'],
+    overrides: {
+      // @ts-expect-error - This is a valid override, mapped fields don't resolve to the same type
+      fields: ({ defaultFields }) => {
+        return defaultFields.map((field) => {
+          if ('name' in field && field.name === 'from') {
+            return {
+              ...field,
+              admin: {
+                description: 'You will need to rebuild the website when changing this field.',
+              },
+            }
+          }
+          return field
+        })
+      },
+      hooks: {
+        afterChange: [revalidateRedirects],
+      },
+    },
+  }),
+  nestedDocsPlugin({
+    collections: ['categories'],
+    generateURL: (docs) => docs.reduce((url, doc) => `${url}/${doc.slug}`, ''),
+  }),
+  seoPlugin({
+    generateTitle,
+    generateURL,
+  }),
+  ...(!useLightweightLocalPlugins
+    ? [
+        searchPlugin({
+          collections: ['posts'],
+          beforeSync: beforeSyncWithSearch,
+          searchOverrides: {
+            fields: ({ defaultFields }) => {
+              return [...defaultFields, ...searchFields]
+            },
+          },
+        }),
+      ]
+    : []),
+]

@@ -4,11 +4,14 @@
 
 You are building the FASTER website (`faster-steam.org`) — a Next.js 14+ (App Router) frontend powered by PayloadCMS 3.x as the headless CMS. The design spec lives in `design.md` and all design tokens are in `design-tokens.json` in this repo. Read both files fully before writing any code.
 
-The starting point is an **existing personal website Payload CMS repo** that will be stripped down and adapted. You will:
+The starting point is [`erinjerri/erinjerri-portf`](https://github.com/erinjerri/erinjerri-portf), an **existing personal website Payload CMS repo** that will be used as the technical foundation only, then stripped down and adapted. You will:
 1. Keep the Payload CMS core and collection infrastructure
-2. Remove blocks/components not needed for FASTER
+2. Keep only essential reusable content capabilities from the template
+3. Remove blocks/components not needed for FASTER
 3. Add FASTER-specific collections, blocks, and globals
 4. Build the Next.js frontend pages that match the Figma design
+
+Do not copy portfolio-specific content, labels, routes, navigation, seeded page copy, or personal branding from the template.
 
 ---
 
@@ -37,8 +40,17 @@ Use CSS custom properties (`--color-teal-primary: #1ABC9C` etc.) in `globals.css
 
 ## Step 2: Payload CMS — Collections to Keep / Add
 
-### Strip from the existing repo (remove these collections/blocks):
-- Any personal portfolio-specific collections (projects, case studies, resume, etc.)
+### Keep from the existing repo where useful:
+- Payload CMS core configuration and collection patterns
+- Next.js App Router, Tailwind, TypeScript, deployment, seed, and test patterns
+- Substack import/cross-post support, adapted to the FASTER `posts` collection
+- About/content page infrastructure, adapted to FASTER pages and design tokens
+- Media handling and rich text patterns
+
+### Strip from the existing repo (remove these public sections, nav items, collections, blocks, and routes unless repurposed below):
+- Personal portfolio-specific content and collections, including projects, case studies, resume, personal services, or portfolio-only globals
+- Public top-nav entries from the portfolio site: `Download`, `Speaking`, `Advisory`, `Experience`, `Read`, `Watch`, and `Book`
+- Portfolio-specific page copy, seeded content, CTAs, personal biography content, images, testimonials, and service/product positioning
 - Any collections not listed below
 
 ### Collections to implement:
@@ -85,6 +97,8 @@ fields: [
   { name: 'content', type: 'richText' },
 ]
 ```
+
+Use `pages` for FASTER content pages such as About, FAQ, Code of Conduct, Donate, Join, and other CMS-authored static pages. Preserve the template's flexible page/content approach only when it serves this FASTER hierarchy.
 
 ### Globals to implement:
 
@@ -148,6 +162,7 @@ Layout:
 ### `/blog` — Blog Index
 - List of `posts` from Payload
 - Each card: hero image thumbnail, title, lede, byline, date, read length, tags
+- Preserve the template's Substack import workflow, but import into FASTER blog/news content only.
 
 ### `/blog/[slug]` — Blog Detail
 - Full-width hero image
@@ -276,6 +291,8 @@ Use `next: { revalidate: 60 }` for ISR on all fetches.
 Seed these initial values via Payload's `afterOperation` hook or a seed script:
 
 **navigation.items:**
+Use the hierarchy from `design.md` and `design-tokens.json`, not the portfolio template navigation. The initial FASTER top nav is:
+
 ```json
 [
   { "label": "ABOUT",    "href": "/about",    "variant": "link" },
@@ -286,6 +303,8 @@ Seed these initial values via Payload's `afterOperation` hook or a seed script:
   { "label": "JOIN",     "href": "/join",     "variant": "button" }
 ]
 ```
+
+Do not seed or render the portfolio nav items `Download`, `Speaking`, `Advisory`, `Experience`, `Read`, `Watch`, or `Book` unless they are explicitly reintroduced as FASTER-specific CMS content later. `READ` and `WATCH` may appear only as the FASTER hierarchy defined in `design.md`, not as the original portfolio sections.
 
 **footer** — seed from `design-tokens.json` `footer` object.
 

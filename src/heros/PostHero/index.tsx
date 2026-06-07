@@ -1,0 +1,95 @@
+import { formatDateTime } from 'src/utilities/formatDateTime'
+import React from 'react'
+
+import type { Post, Project } from '@/payload-types'
+
+import { Media } from '@/components/Media'
+import { formatAuthors } from '@/utilities/formatAuthors'
+import { getReadingTime } from '@/utilities/readingTime'
+
+export const PostHero: React.FC<{
+  post: Post | Project
+}> = ({ post }) => {
+  const { categories, content, heroImage, populatedAuthors, publishedAt, title } = post
+  const readingTime = getReadingTime(content as Parameters<typeof getReadingTime>[0])
+
+  const hasAuthors =
+    populatedAuthors && populatedAuthors.length > 0 && formatAuthors(populatedAuthors) !== ''
+
+  return (
+    <div className="relative -mt-[10.4rem] flex items-end">
+      <div className="container z-10 relative lg:grid lg:grid-cols-[1fr_48rem_1fr] text-foreground pb-8">
+        <div className="col-start-1 col-span-1 md:col-start-2 md:col-span-2">
+          <div className="uppercase text-sm mb-6">
+            {categories?.map((category, index) => {
+              if (typeof category === 'object' && category !== null) {
+                const { title: categoryTitle } = category
+
+                const titleToUse = categoryTitle || 'Untitled category'
+
+                const isLast = index === categories.length - 1
+
+                return (
+                  <React.Fragment key={index}>
+                    {titleToUse}
+                    {!isLast && <React.Fragment>, &nbsp;</React.Fragment>}
+                  </React.Fragment>
+                )
+              }
+              return null
+            })}
+          </div>
+
+          <div className="">
+            <h1 className="mb-6 font-title text-display-h1 leading-[1.1] tracking-tight md:text-display-h1-md">
+              {title}
+            </h1>
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-4 md:gap-16">
+            {hasAuthors && (
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-1">
+                  <p className="text-sm">Author</p>
+
+                  <p>{formatAuthors(populatedAuthors)}</p>
+                </div>
+              </div>
+            )}
+            {publishedAt && (
+              <div className="flex flex-col gap-1">
+                <p className="text-sm">Date Published</p>
+
+                <time dateTime={publishedAt}>{formatDateTime(publishedAt)}</time>
+              </div>
+            )}
+            {readingTime.words > 0 && (
+              <div className="flex flex-col gap-1">
+                <p className="text-sm">Reading Time</p>
+                <p>{readingTime.text}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      <div className="relative min-h-[65vh] md:min-h-[72vh] select-none">
+        {heroImage && typeof heroImage !== 'string' && (
+          <Media
+            alt={
+              (typeof heroImage.alt === 'string' && heroImage.alt.trim()) ||
+              `${title} — Erin Jerri, AI and spatial computing`
+            }
+            fill
+            priority
+            imgClassName="-z-10 object-cover object-[40%_20%]"
+            pictureClassName="absolute inset-0 block h-full w-full"
+            quality={72}
+            resource={heroImage}
+            size="(max-width: 768px) 100vw, (max-width: 1440px) 100vw, 1920px"
+          />
+        )}
+        <div className="absolute pointer-events-none left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-background to-transparent" />
+      </div>
+    </div>
+  )
+}

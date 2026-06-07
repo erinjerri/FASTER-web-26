@@ -1,0 +1,697 @@
+:root {
+  --color-teal-primary: #1ABC9C;
+  --color-teal-mid: #66CCCC;
+  --color-teal-light: #73DACE;
+  --color-teal-pale: #AFF4C6;
+  --color-deep-teal: #005E5E;
+  --color-midnight-teal: #013F3F;
+  --color-near-black: #2F2F2F;
+  --color-dark-ui: #151719;
+  --color-off-white: #FDFDFD;
+  --color-orange-accent: #FFA66B;
+  --color-slate: #434A54;
+  --color-navy: #1E2A38;
+  --color-sky-pale: #E6F1F5;
+  --color-yellow-accent: #FFD76B;
+  --color-charcoal: #34495E;
+  --color-blue-light: #AEDFF7;
+  --color-silver: #BDC3C7;
+  --color-purple-accent: #693E71;
+  --color-gray-text: #757575;
+  --color-gray-border: #E6E6E6;
+  --color-gray-light: #F8F8F8;
+  --color-gray-mid: #D7D7D7;
+  --color-text-primary: #000000;
+  --color-text-dark: #1E1E1E;
+  --color-nav-text: #D9FFF7;
+  --color-white: #FFFFFF;
+
+  --color-nav-bg: var(--color-dark-ui);
+  --color-nav-active-bg: var(--color-teal-primary);
+  --color-nav-active-text: var(--color-dark-ui);
+  --color-hero-bg: var(--color-teal-pale);
+  --color-card-bg: var(--color-teal-pale);
+  --color-subscribe-bg: var(--color-teal-light);
+  --color-footer-bg: var(--color-gray-border);
+  --color-button-primary-bg: var(--color-text-dark);
+  --color-button-primary-text: var(--color-white);
+  --color-text-heading: var(--color-text-primary);
+  --color-text-body: var(--color-near-black);
+  --color-text-muted: var(--color-gray-text);
+  --color-text-on-dark: var(--color-white);
+
+  --font-family-heading: Poppins, sans-serif;
+  --font-family-article: Montserrat, sans-serif;
+  --font-family-ui: Inter, sans-serif;
+  --font-family-body: 'Open Sans', sans-serif;
+  --font-family-special: Satoshi, sans-serif;
+
+  /* Heading weights (aligned with Tailwind scale: extrabold / bold / semibold / medium) */
+  --font-weight-heading-1: 800;
+  --font-weight-heading-2: 700;
+  --font-weight-heading-3: 600;
+  --font-weight-heading-4-6: 500;
+
+  /* Legacy template HSL aliases remain for components not yet migrated. */
+  --hp-ink: 230 22% 9%;
+  --hp-graphite: 220 14% 16%;
+  --hp-mist: 210 25% 94%;
+  --hp-mint: 162 48% 48%;
+  --hp-violet: 268 42% 58%;
+  --hp-coral: 14 72% 64%;
+  --hp-amber: 38 82% 58%;
+  --hp-cyan-glow: 195 70% 42%;
+
+  /* Typography scale */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.8125rem; /* 13px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-md: 1.125rem; /* 18px */
+  --font-size-lg: 1.25rem; /* 20px */
+  --font-size-xl: 1.5rem; /* 24px */
+  --font-size-2xl: 2rem; /* 32px */
+  --font-size-3xl: 2.5rem; /* 40px */
+  --font-size-4xl: 3rem; /* 48px */
+  --font-size-5xl: 3.5rem; /* 56px */
+
+  /* Spacing scale (8px base) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* Nav-specific (md+ desktop bar only; scales down slightly on very wide viewports with many links) */
+  --nav-font-size: 0.8125rem; /* 13px */
+  --nav-height: 64px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --nav-font-size: 0.75rem; /* 12px — tighter md band */
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --nav-font-size: 0.8125rem; /* 13px */
+  }
+}
+
+@media (min-width: 1536px) {
+  :root {
+    --nav-font-size: 0.75rem; /* 12px — extra room before overlap on large monitors */
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --nav-font-size: 0.8125rem; /* 13px — ultra-wide can breathe again */
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* `next/font` on `<html>` sets --font-family-title / --font-family-copy (see `app/(frontend)/fonts.ts`). */
+    --font-title: var(--font-family-title), 'League Spartan', system-ui, sans-serif;
+    --font-copy: var(--font-family-copy), 'Jost', system-ui, sans-serif;
+  }
+
+  h1 {
+    font-family: var(--font-title);
+    font-weight: var(--font-weight-heading-1);
+    letter-spacing: -0.01em;
+  }
+
+  h2 {
+    font-family: var(--font-title);
+    font-weight: var(--font-weight-heading-2);
+    letter-spacing: 0em;
+  }
+
+  h3 {
+    font-family: var(--font-title);
+    font-weight: var(--font-weight-heading-3);
+    letter-spacing: 0.01em;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-title);
+    font-weight: var(--font-weight-heading-4-6);
+    letter-spacing: 0.01em;
+  }
+
+  :root {
+    --background: 222 35% 5%;
+    --foreground: 0 0% 74.9%;
+    --text: hsl(var(--foreground));
+
+    --card: 210 28.8% 28.6%;
+    --card-foreground: 0 0% 74.9%;
+
+    --popover: 210 28.8% 28.6%;
+    --popover-foreground: 0 0% 74.9%;
+
+    --primary: 203.7 77.2% 48.2%;
+    --primary-foreground: 0 0% 96%;
+
+    --secondary: 185.4 100% 60.8%;
+    --secondary-foreground: 222 35% 5%;
+
+    --muted: 210 28.8% 28.6%;
+    --muted-foreground: 0 0% 62%;
+
+    --accent: 185.4 100% 60.8%;
+    --accent-foreground: 222 35% 5%;
+
+    --destructive: 354 70% 55%;
+    --destructive-foreground: 0 0% 96%;
+
+    --border: 210 28.8% 34%;
+    --input: 210 28.8% 28.6%;
+    --ring: 203.7 77.2% 48.2%;
+
+    --radius: 0.5rem;
+
+    --success: 185.4 100% 60.8%;
+    --warning: 44 90% 62%;
+    --error: 354 70% 55%;
+  }
+
+  [data-theme='dark'] {
+    --background: 222 35% 5%;
+    --foreground: 0 0% 74.9%;
+    --text: hsl(var(--foreground));
+
+    --card: 210 28.8% 28.6%;
+    --card-foreground: 0 0% 74.9%;
+
+    --popover: 210 28.8% 28.6%;
+    --popover-foreground: 0 0% 74.9%;
+
+    --primary: 203.7 77.2% 48.2%;
+    --primary-foreground: 0 0% 96%;
+
+    --secondary: 185.4 100% 60.8%;
+    --secondary-foreground: 222 35% 5%;
+
+    --muted: 210 28.8% 28.6%;
+    --muted-foreground: 0 0% 62%;
+
+    --accent: 185.4 100% 60.8%;
+    --accent-foreground: 222 35% 5%;
+
+    --destructive: 354 70% 55%;
+    --destructive-foreground: 0 0% 96%;
+
+    --border: 210 28.8% 34%;
+    --input: 210 28.8% 28.6%;
+    --ring: 203.7 77.2% 48.2%;
+
+    --success: 185.4 100% 60.8%;
+    --warning: 44 90% 62%;
+    --error: 354 70% 55%;
+  }
+
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground min-h-[100vh] flex flex-col;
+    /* Body family comes from `fontJost.className` on `<body>` in `(frontend)/layout.tsx`. */
+    font-size: clamp(1rem, 2vw, 1.0625rem);
+    font-weight: 400;
+    line-height: 1.65;
+  }
+
+  p,
+  span,
+  li,
+  a,
+  label,
+  input,
+  textarea,
+  select,
+  button {
+    font-family: inherit;
+    font-weight: 400;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    button {
+      font-size: 1.0625rem;
+    }
+  }
+}
+
+@layer components {
+  [data-theme='dark'] .payload-richtext.prose {
+    --tw-prose-body: hsl(var(--foreground));
+    --tw-prose-headings: hsl(var(--foreground));
+    --tw-prose-links: hsl(var(--primary));
+    --tw-prose-bold: hsl(var(--foreground));
+    --tw-prose-code: hsl(var(--secondary));
+    --tw-prose-pre-bg: hsl(var(--card));
+    color: hsl(var(--foreground));
+  }
+
+  [data-theme='light'] .payload-richtext.prose {
+    --tw-prose-body: hsl(222, 35%, 12%);
+    --tw-prose-headings: hsl(222, 35%, 12%);
+    --tw-prose-links: hsl(203.7, 70%, 40%);
+    color: hsl(222, 35%, 12%);
+  }
+
+  @media (min-width: 768px) {
+    .payload-richtext.prose :where(h1):not(.hero-rich-demoted-h1) {
+      font-size: 3.5rem;
+    }
+
+    .payload-richtext.prose :where(h2) {
+      font-size: 1.875rem;
+    }
+  }
+
+  /* Second+ Lexical h1 → div when RichText demoteExtraHeroH1 (matches prose / prose-base scale). */
+  .hero-rich-demoted-h1 {
+    font-family: var(--font-title);
+    font-weight: var(--font-weight-heading-2);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 0.35em;
+    font-size: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-rich-demoted-h1 {
+      font-size: 3.5rem;
+    }
+  }
+
+  /**
+   * Hero / bio RichText (non-prismatic heroes): light body, stepped heading weights.
+   * Specificity: .hero-bio-richtext.payload-richtext.prose … beats @layer base element selectors.
+   */
+  .hero-bio-richtext.payload-richtext.prose {
+    font-weight: 300;
+  }
+
+  .hero-bio-richtext.payload-richtext.prose h1 {
+    font-weight: 400;
+  }
+
+  .hero-bio-richtext .hero-rich-demoted-h1 {
+    font-weight: 400;
+  }
+
+  .hero-bio-richtext.payload-richtext.prose h2 {
+    font-weight: 400;
+  }
+
+  .hero-bio-richtext.payload-richtext.prose h3 {
+    font-weight: 300;
+  }
+
+  .hero-bio-richtext.payload-richtext.prose strong {
+    font-weight: 500;
+  }
+
+  .hero-bio-richtext.payload-richtext.prose a {
+    font-weight: 500;
+  }
+
+  .about-prose-scope .payload-richtext.prose h1,
+  .about-prose-scope .payload-richtext.prose h2,
+  .about-prose-scope .payload-richtext.prose h3 {
+    font-weight: 400;
+  }
+
+  .about-prose-scope .payload-richtext.prose h4,
+  .about-prose-scope .payload-richtext.prose h5,
+  .about-prose-scope .payload-richtext.prose h6 {
+    font-weight: 400;
+  }
+
+  .about-prose-scope .payload-richtext.prose strong {
+    font-weight: 500;
+  }
+
+  /* Prismatic page shell — add class `theme-prismatic` on any wrapper; tokens live on :root. */
+  .theme-prismatic {
+    background: linear-gradient(
+      180deg,
+      hsl(var(--hp-ink)) 0%,
+      hsl(232 20% 8%) 42%,
+      hsl(225 16% 11%) 100%
+    );
+    color: hsl(var(--hp-mist) / 0.92);
+    padding-bottom: clamp(3rem, 8vw, 5rem);
+  }
+
+  .theme-prismatic h1 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    margin: 0 0 0.5em;
+    color: hsl(var(--hp-mist));
+  }
+
+  .theme-prismatic h2 {
+    font-size: clamp(1.5rem, 2.6vw, 1.875rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin: 2.25rem 0 0.6em;
+    color: hsl(var(--hp-mist));
+  }
+
+  .theme-prismatic h3 {
+    font-size: 1.3125rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+    margin: 1.75rem 0 0.45em;
+    color: hsl(var(--hp-mist) / 0.96);
+  }
+
+  .theme-prismatic h4 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    margin: 1.5rem 0 0.4em;
+    color: hsl(var(--hp-mist) / 0.92);
+  }
+
+  .theme-prismatic h5 {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    margin: 1.25rem 0 0.35em;
+    color: hsl(var(--hp-mist) / 0.65);
+  }
+
+  .theme-prismatic h6 {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1.45;
+    text-transform: uppercase;
+    margin: 1rem 0 0.3em;
+    color: hsl(var(--hp-violet) / 0.88);
+  }
+
+  .theme-prismatic .payload-richtext.prose {
+    font-size: clamp(1.125rem, 2vw, 1.375rem) !important;
+    --tw-prose-body: hsl(var(--hp-mist) / 0.86);
+    --tw-prose-headings: hsl(var(--hp-mist));
+    --tw-prose-bold: hsl(var(--hp-mist));
+    --tw-prose-links: hsl(var(--hp-mint));
+    --tw-prose-bullets: hsl(var(--hp-mint) / 0.55);
+  }
+
+  .theme-prismatic .payload-richtext.prose h1 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    margin-top: 0;
+  }
+
+  .theme-prismatic .payload-richtext.prose h2 {
+    font-size: clamp(1.5rem, 2.6vw, 1.875rem);
+    font-weight: 600;
+  }
+
+  .theme-prismatic .payload-richtext.prose h3 {
+    font-size: 1.3125rem;
+    font-weight: 600;
+  }
+
+  .theme-prismatic .payload-richtext.prose h4 {
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+
+  .theme-prismatic .payload-richtext.prose p,
+  .theme-prismatic .payload-richtext.prose > div {
+    font-size: inherit;
+    font-weight: 400;
+    line-height: 1.72;
+    margin-top: 0.85em;
+    margin-bottom: 0.85em;
+  }
+
+  .theme-prismatic .payload-richtext.prose li {
+    font-size: inherit;
+  }
+
+  .theme-prismatic .payload-richtext.prose a {
+    color: hsl(var(--hp-mint));
+    font-weight: 500;
+    text-underline-offset: 0.18em;
+  }
+
+  .theme-prismatic .payload-richtext.prose a:hover {
+    color: hsl(var(--hp-mint) / 0.85);
+  }
+
+  .hp-hero-root {
+    color: hsl(var(--hp-mist) / 0.92);
+  }
+
+  .hp-hero-backdrop {
+    background:
+      radial-gradient(ellipse 120% 85% at 18% -10%, hsl(var(--hp-violet) / 0.14), transparent 58%),
+      radial-gradient(ellipse 100% 75% at 88% 25%, hsl(var(--hp-mint) / 0.11), transparent 52%),
+      radial-gradient(ellipse 70% 55% at 50% 105%, hsl(var(--hp-coral) / 0.07), transparent 48%),
+      radial-gradient(ellipse 45% 30% at 92% 88%, hsl(var(--hp-amber) / 0.04), transparent 50%),
+      radial-gradient(circle at 72% 18%, hsl(var(--hp-cyan-glow) / 0.055), transparent 42%),
+      linear-gradient(168deg, hsl(var(--hp-ink)) 0%, hsl(230 20% 8%) 48%, hsl(228 18% 11%) 100%);
+  }
+
+  /* Own stacking contexts so hero copy is not composited together with the fixed canvas layer. */
+  [data-high-impact-hero] .hp-hero-prose,
+  [data-high-impact-hero] .hp-hero-content-inner {
+    isolation: isolate;
+  }
+
+  .hp-hero-prose.prose,
+  .hp-hero-prose .prose {
+    --tw-prose-body: hsl(var(--hp-mist) / 0.84);
+    --tw-prose-headings: hsl(var(--hp-mist));
+    --tw-prose-bold: hsl(var(--hp-mist));
+    --tw-prose-links: hsl(var(--hp-mint));
+  }
+
+  .hp-hero-prose .hero-rich-demoted-h1,
+  .hp-hero-prose.prose h1 {
+    font-size: clamp(2.125rem, 4.5vw, 3.25rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    color: hsl(var(--hp-mist));
+  }
+
+  /* Open hero (no glass card): Aura-style display type on the canvas */
+  .hp-hero-prose--open .hero-rich-demoted-h1,
+  .hp-hero-prose.hp-hero-prose--open.prose h1 {
+    font-size: clamp(2.75rem, 8vw, 4.75rem);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+    margin-top: 0;
+    margin-bottom: 0.35em;
+    text-shadow:
+      0 2px 40px rgb(0 0 0 / 0.5),
+      0 1px 3px rgb(0 0 0 / 0.35);
+  }
+
+  .hp-hero-prose.prose h2 {
+    font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+    font-weight: 600;
+    color: hsl(var(--hp-mist) / 0.95);
+    margin-top: 1.25em;
+  }
+
+  .hp-hero-prose.prose h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: hsl(var(--hp-mist) / 0.9);
+  }
+
+  .hp-hero-prose.prose p {
+    font-weight: 400;
+    line-height: 1.68;
+    color: hsl(var(--hp-mist) / 0.82);
+  }
+
+  .hp-hero-prose.hp-hero-prose--open.prose h2 {
+    font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+    margin-top: 0.85em;
+    margin-bottom: 0.35em;
+    color: hsl(var(--hp-mist) / 0.88);
+    text-shadow: 0 1px 24px rgb(0 0 0 / 0.4);
+  }
+
+  .hp-hero-prose.hp-hero-prose--open.prose p {
+    font-size: clamp(1.0625rem, 2.1vw, 1.3125rem);
+    line-height: 1.58;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: hsl(var(--hp-mist) / 0.76);
+    max-width: 38rem;
+    text-shadow: 0 1px 28px rgb(0 0 0 / 0.42);
+  }
+
+  .hp-hero-prose.hp-hero-prose--open.prose p:first-of-type {
+    margin-top: 0.25em;
+  }
+
+  .hp-hero-prose.prose strong {
+    font-weight: 600;
+    color: hsl(var(--hp-mist) / 0.95);
+  }
+
+  .hp-hero-prose.prose a {
+    color: hsl(var(--hp-mint));
+    font-weight: 500;
+  }
+
+  .hp-hero-links a {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 0;
+    border: 1px solid hsl(var(--hp-mint) / 0.35);
+    background: hsl(var(--hp-mint) / 0.1);
+    padding: 0.55rem 1.15rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: hsl(var(--hp-mist)) !important;
+    text-decoration: none !important;
+  }
+
+  .hp-hero-links a:hover {
+    border-color: hsl(var(--hp-mint) / 0.55);
+    background: hsl(var(--hp-mint) / 0.16);
+  }
+
+  .hp-archive-section {
+    margin-top: 0.5rem;
+    padding-top: clamp(2.5rem, 6vw, 4rem);
+    border-top: 1px solid hsl(var(--hp-mist) / 0.08);
+  }
+
+  .hp-archive-intro .payload-richtext.prose {
+    font-size: 1.0625rem;
+    line-height: 1.72;
+  }
+
+  @media (min-width: 768px) {
+    .hp-archive-intro .payload-richtext.prose {
+      font-size: 1.125rem;
+    }
+  }
+
+  .theme-prismatic .prose h3 a {
+    color: hsl(var(--hp-mist) / 0.95);
+    font-weight: 600;
+  }
+
+  .theme-prismatic .prose h3 a:hover {
+    color: hsl(var(--hp-mint));
+  }
+
+  /* Vertical rhythm for main content — scales with viewport (horizontal padding stays from Tailwind theme.container). */
+  .container {
+    padding-top: clamp(1rem, 3vw, 2rem);
+    padding-bottom: clamp(1rem, 3vw, 2rem);
+  }
+}
+
+/*
+ * High-impact hero — mobile readability only (≤768px). XR canvas stays visible; copy/CTAs read clearly.
+ * Desktop / tablet (≥769px): no changes.
+ */
+@media (max-width: 768px) {
+  .site-ambient-curves {
+    opacity: 0.65;
+    filter: blur(4px);
+  }
+
+  [data-high-impact-hero] .hp-hero-mobile-overlay {
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)),
+      radial-gradient(circle, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
+  }
+
+  [data-high-impact-hero] .hp-hero-content-inner--with-prose {
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    padding: 0;
+  }
+
+  [data-high-impact-hero] .hp-hero-content-inner--with-prose .prose,
+  [data-high-impact-hero] .hp-hero-content-inner--with-prose .prose h1,
+  [data-high-impact-hero] .hp-hero-content-inner--with-prose .prose h2,
+  [data-high-impact-hero] .hp-hero-content-inner--with-prose .prose h3,
+  [data-high-impact-hero] .hp-hero-content-inner--with-prose .prose p,
+  [data-high-impact-hero] .hp-hero-content-inner--with-prose .prose li {
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+  }
+
+  [data-high-impact-hero] .hp-hero-cta-row a {
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: #0a0a0a !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  }
+
+  [data-high-impact-hero] .hp-hero-cta-row a:hover {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.2) !important;
+    color: #000000 !important;
+  }
+}
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  @media (max-width: 768px) {
+    [data-high-impact-hero] .hp-hero-content-inner--with-prose .prose,
+    [data-high-impact-hero] .hp-hero-content-inner--with-prose .prose h1 {
+      text-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.85),
+        0 2px 12px rgba(0, 0, 0, 0.75);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-ambient-curves {
+    animation: none !important;
+    opacity: 0.3 !important;
+    filter: blur(2px);
+  }
+}
