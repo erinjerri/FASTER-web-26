@@ -156,8 +156,10 @@ Minimum analytics smoke test:
 
 ## Reference Links
 
+- Payload production deployment docs: https://payloadcms.com/docs/production/deployment
 - Payload storage adapters: https://payloadcms.com/docs/upload/storage-adapters
 - Payload uploads overview: https://payloadcms.com/docs/upload/overview
+- Payload Cloudflare D1 template repo: https://github.com/payloadcms/payload/tree/main/templates/with-cloudflare-d1
 - Payload + Cloudflare deployment walkthrough: https://www.youtube.com/watch?v=8jPNsLX7XGg
 - Payload DB and file storage tutorial: https://www.youtube.com/watch?v=-0CCUkoBDSY&t=692s
 - Payload/Supabase tutorial reference: https://www.youtube.com/watch?v=L5w2QYB9-UU&t=161s
