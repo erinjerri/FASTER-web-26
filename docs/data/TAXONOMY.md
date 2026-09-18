@@ -22,11 +22,12 @@ Taxonomy values should be centrally controlled instead of randomly entered as fr
 | Vocabulary | Purpose | Examples |
 | --- | --- | --- |
 | Profile type | High-level directory category | `speaker`, `filmmaker`, `founder` |
-| Industry | Economic or professional sector | `technology`, `film`, `education`, `healthcare` |
-| Discipline | Creative or professional practice | `animation`, `software_engineering`, `music_production` |
+| Industry | Economic or professional sector | `healthtech`, `biotech`, `AI`, `SaaS` |
+| Discipline | Creative or professional practice | `animation`, `software_engineering`, `music_production`, `creative` |
 | Skill | Specific capability | `public_speaking`, `fundraising`, `product_design` |
 | Topic | Content/programming subject | `career_growth`, `entrepreneurship`, `representation` |
-| Community | Affinity or program community | `faster_pros`, `faster_fresh`, `faster_facets` |
+| FASTER component | Membership affiliation | `faster_pros`, `faster_fresh`, `faster_facets` |
+| Event name | Event speaking or feature | `FASTERCON`, `FASTERCON20` |
 | Event role | Role within an event | `speaker`, `panelist`, `moderator`, `mentor` |
 
 ## Governance
@@ -35,4 +36,3 @@ Taxonomy values should be centrally controlled instead of randomly entered as fr
 - Prefer stable machine values and editable labels.
 - Do not delete values that are in use; deprecate and migrate them.
 - Keep external provider categories mapped to internal taxonomy values rather than storing provider labels as canonical values.
-
