@@ -1,8 +1,20 @@
 # FASTER Platform
 
-Composable content platform for FASTER - Filipinx Americans in Science, Technology, Engineering, Arts, and Mathematics.
+Website and directory platform for FASTER - Filipinx Americans in Science, Technology, Engineering, Arts, and Mathematics.
+
+This monorepo contains the public FASTER website, its Payload CMS, and the foundation for a dedicated community directory. The website publishes FASTER programs, stories, events, resources, and organization content. The directory will organize canonical profiles, organizations, roles, appearances, creative work, and source provenance without reducing that work to a media-storage installation project.
 
 This repository uses [`erinjerri/erinjerri-portf`](https://github.com/erinjerri/erinjerri-portf) as the technical foundation only. Keep the architecture and CMS patterns; do not copy portfolio-specific content, labels, routes, or branding.
+
+## Repository Workspaces
+
+| Workspace | Purpose |
+| --- | --- |
+| Root package | Next.js website and Payload CMS application |
+| [`directory/`](./directory/FASTER-directory.md) | Directory product brief, data model direction, and migration runbooks |
+| [`docs/`](./docs/README.md) | Shared architecture, CMS, data, integration, and operations documentation |
+
+Start with the [FASTER directory overview](./directory/FASTER-directory.md) for the directory scope. To identify and export legacy directory data from DigitalOcean, follow the [DigitalOcean data-pull runbook](./directory/DIGITALOCEAN_DATA_PULL.md).
 
 ## Stack
 
@@ -255,4 +267,3 @@ Commit:
 - source files under `src/`
 - Payload generated import map/types when schema changes
 - lockfile and package metadata
-

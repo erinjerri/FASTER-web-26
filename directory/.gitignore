@@ -1,0 +1,5 @@
+# Never commit source exports or credentials.
+exports/
+.env
+.env.*
+!.env.example
